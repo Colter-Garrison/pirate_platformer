@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-@export_category("movement")
+@export_category("locomotion")
 @export var _speed: int = 8
 @export var _acceleration: int = 16
 @export var _deceleration: int = 32
@@ -9,6 +9,8 @@ extends CharacterBody2D
 @export var _air_control: float = 0.5
 @export var _jump_height: float = 2.5
 var _jump_velocity : float
+
+@onready var _sprite: Sprite2D = $Sprite2D
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity: int = ProjectSettings.get_setting("physics/2d/default_gravity")
@@ -25,10 +27,10 @@ func _ready():
 	_jump_velocity += sqrt(_jump_height * gravity * 2) * -1
 
 func face_left():
-	pass
+	_sprite.flip_h = true
 
 func face_right():
-	pass
+	_sprite.flip_h = false
 
 func run(direction : float):
 	_direction = direction
@@ -44,6 +46,10 @@ func stop_jump():
 #endregion
 
 func _physics_process(delta: float) -> void:
+	if sign(_direction) == -1:
+		face_left()
+	if sign(_direction) == 1:
+		face_right()
 	
 	if is_on_floor():
 		_ground_physics(delta)

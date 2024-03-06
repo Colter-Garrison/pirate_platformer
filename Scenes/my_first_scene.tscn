@@ -26,7 +26,12 @@ position = Vector2(0.5, 0)
 shape = SubResource("RectangleShape2D_w37va")
 
 [node name="Roger" parent="." instance=ExtResource("2_71see")]
-position = Vector2(362, 424)
+position = Vector2(473, 555)
 
 [node name="Player" type="Node" parent="Roger"]
 script = ExtResource("3_4fk2x")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(477, 489)
+scale = Vector2(5.97385, 4.87919)
+zoom = Vector2(3, 3)
