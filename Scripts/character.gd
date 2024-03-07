@@ -28,10 +28,10 @@ func _ready():
 	_jump_velocity += sqrt(_jump_height * gravity * 2) * -1
 
 func face_left():
-	_sprite.flip_h = true
+		_sprite.flip_h = true
 
 func face_right():
-	_sprite.flip_h = false
+		_sprite.flip_h = false
 
 func run(direction : float):
 	_direction = direction

@@ -266,7 +266,7 @@ advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_etgbu"]
 states/Movement/node = SubResource("AnimationNodeStateMachine_giv2i")
-states/Movement/position = Vector2(515.714, 100.49)
+states/Movement/position = Vector2(515.714, 99.965)
 transitions = ["Start", "Movement", SubResource("AnimationNodeStateMachineTransition_cbpgo")]
 graph_offset = Vector2(-138, -58)
 
@@ -277,9 +277,9 @@ advance_mode = 2
 "states/With Sword/node" = SubResource("AnimationNodeStateMachine_1b43l")
 "states/With Sword/position" = Vector2(647.143, 101.609)
 "states/Without Sword/node" = SubResource("AnimationNodeStateMachine_etgbu")
-"states/Without Sword/position" = Vector2(376.857, 99.5102)
+"states/Without Sword/position" = Vector2(376.857, 99.7901)
 transitions = ["Start", "Without Sword", SubResource("AnimationNodeStateMachineTransition_pos1w")]
-graph_offset = Vector2(-234, -122)
+graph_offset = Vector2(-178, -56)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_w58y4"]
 radius = 8.0
