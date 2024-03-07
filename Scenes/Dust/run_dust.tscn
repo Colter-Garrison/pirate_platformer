@@ -34,7 +34,7 @@ animations = [{
 sprite_frames = SubResource("SpriteFrames_iglx5")
 frame = 1
 frame_progress = 0.0416615
-offset = Vector2(2.08165e-12, -6)
+offset = Vector2(2.08165e-12, 2.08165e-12)
 script = ExtResource("6_rwmxy")
 
 [connection signal="animation_finished" from="." to="." method="_on_animation_finished"]
