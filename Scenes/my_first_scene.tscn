@@ -1,9 +1,11 @@
-[gd_scene load_steps=14 format=3 uid="uid://ckyi5w0octki"]
+[gd_scene load_steps=16 format=3 uid="uid://ckyi5w0octki"]
 
 [ext_resource type="Texture2D" uid="uid://bji2mr13fmq5p" path="res://icon.svg" id="1_x680w"]
 [ext_resource type="PackedScene" uid="uid://lc63v4rm77ne" path="res://Scenes/Characters/roger.tscn" id="2_71see"]
+[ext_resource type="Script" path="res://Scripts/camera.gd" id="2_kc35g"]
 [ext_resource type="Script" path="res://Scripts/player.gd" id="3_4fk2x"]
 [ext_resource type="PackedScene" uid="uid://rg67proo2irj" path="res://Scenes/Characters/crabby.tscn" id="3_cfjc3"]
+[ext_resource type="PackedScene" uid="uid://dl0o4f53acc68" path="res://Scenes/background.tscn" id="3_jenfh"]
 [ext_resource type="PackedScene" uid="uid://ehnwp2icv8fl" path="res://Scenes/Characters/fierce_tooth.tscn" id="4_cg104"]
 [ext_resource type="PackedScene" uid="uid://ccm8e5dn14ojs" path="res://Scenes/Characters/pink_star.tscn" id="5_2b2dq"]
 [ext_resource type="Texture2D" uid="uid://dgfkge1tvnjg6" path="res://Assets/Treasure Hunters/Palm Tree Island/Sprites/Terrain/Terrain (32x32).png" id="7_4d8n2"]
@@ -547,20 +549,41 @@ texture = ExtResource("1_x680w")
 position = Vector2(0.5, 0)
 shape = SubResource("RectangleShape2D_w37va")
 
+[node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("_subject")]
+position = Vector2(655, 360)
+scale = Vector2(5.97385, 4.87919)
+zoom = Vector2(3, 3)
+script = ExtResource("2_kc35g")
+_subject = NodePath("../Roger")
+_offset = Vector2(2.5, -1.5)
+_look_ahead_trans_type = 1
+_look_ahead_ease_type = 2
+_look_ahead_duration = 2.0
+_floor_height_trans_type = 1
+_floor_height_ease_type = 1
+
+[node name="Background" parent="Camera2D" instance=ExtResource("3_jenfh")]
+
 [node name="Roger" parent="." instance=ExtResource("2_71see")]
-position = Vector2(467, 576)
+position = Vector2(576, 385)
 
 [node name="Player" type="Node" parent="Roger"]
 script = ExtResource("3_4fk2x")
 
 [node name="Crabby" parent="." instance=ExtResource("3_cfjc3")]
-position = Vector2(399, 553)
+position = Vector2(484, 556)
+_is_facing_left = true
+_sprites_face_left = true
 
 [node name="Fierce Tooth" parent="." instance=ExtResource("4_cg104")]
-position = Vector2(511, 554)
+position = Vector2(540, 550)
+_is_facing_left = true
+_sprites_face_left = true
 
 [node name="Pink Star" parent="." instance=ExtResource("5_2b2dq")]
-position = Vector2(566, 548)
+position = Vector2(582, 560)
+_is_facing_left = true
+_sprites_face_left = true
 
 [node name="TileMap" type="TileMap" parent="."]
 position = Vector2(143, -89)
@@ -593,7 +616,5 @@ position = Vector2(815, 519)
 [node name="Palm Tree7" parent="." instance=ExtResource("9_qu5p3")]
 position = Vector2(-49, 199)
 
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(467, 570)
-scale = Vector2(5.97385, 4.87919)
-zoom = Vector2(3, 3)
+[connection signal="changed_direction" from="Roger" to="Camera2D" method="_on_subject_changed_direction"]
+[connection signal="landed" from="Roger" to="Camera2D" method="_on_subject_landed"]
